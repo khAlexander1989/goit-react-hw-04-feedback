@@ -3,21 +3,22 @@ import PropTypes from 'prop-types';
 import { getIconByType } from 'utils';
 import { Btn } from './FeedbackBtn.styled';
 
-export function FeedbackBtn({ type, onForwardFeedback }) {
-  const BtnIcon = getIconByType(type);
+export function FeedbackBtn({ feedbackType, onLeaveFeedback, ...allyProps }) {
+  const BtnIcon = getIconByType(feedbackType);
 
   function onFeedbackBtnClick() {
-    onForwardFeedback(type);
+    onLeaveFeedback(feedbackType);
   }
 
   return (
-    <Btn type={type} onClick={onFeedbackBtnClick}>
+    <Btn type={feedbackType} onClick={onFeedbackBtnClick} {...allyProps}>
       <BtnIcon size="100%" />
     </Btn>
   );
 }
 
 FeedbackBtn.propTypes = {
-  type: PropTypes.oneOf(['good', 'neutral', 'bad']),
-  onForwardFeedback: PropTypes.func.isRequired,
+  feedbackType: PropTypes.oneOf(['good', 'neutral', 'bad']),
+  onLeaveFeedback: PropTypes.func.isRequired,
+  'aria-label': PropTypes.string.isRequired,
 };

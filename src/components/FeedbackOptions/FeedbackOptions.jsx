@@ -7,16 +7,16 @@ import {
   FeedbackLabel,
 } from './FeedbackOptions.styled';
 
-export function FeedbackOptions({ options, onLeaveFeedback }) {
-  function forwardFeedback(feedbackType) {
-    onLeaveFeedback(feedbackType);
-  }
-
+export function FeedbackOptions({ options, ...restProps }) {
   return (
     <BtnGroup>
       {options.map(option => (
         <BtnGroupItem key={option}>
-          <FeedbackBtn type={option} onForwardFeedback={forwardFeedback} />
+          <FeedbackBtn
+            feedbackType={option}
+            {...restProps}
+            aria-label={`Leave ${option} feedback button`}
+          />
           <FeedbackLabel>{option}</FeedbackLabel>
         </BtnGroupItem>
       ))}

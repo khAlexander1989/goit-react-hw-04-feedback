@@ -29,3 +29,11 @@ export function getIconByType(type) {
     default:
   }
 }
+
+export function countTotalValue(...values) {
+  return values.reduce((accum, curr) => accum + curr, 0);
+}
+
+export function countCurrentValuePercentage(currentValue, total) {
+  return total ? Math.round((currentValue * 100) / total) : 0;
+}
